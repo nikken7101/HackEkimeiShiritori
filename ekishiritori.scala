@@ -44,21 +44,19 @@ def zipWithScore(stationNames: Seq[String]): Seq[(String, Int)] =
     (name, score)
   }
 
-
-// メインスクリプト
-// Wikipediaの駅名一覧ページをがさっとコピペしてきたファイル
+// Wikipediaの日本の鉄道駅一覧の各ページのリストをまるっとコピペしてきたファイル
+// https://ja.wikipedia.org/wiki/日本の鉄道駅一覧
 val src = scala.io.Source.fromFile("wikipedia-ekimei-page-texts.txt")
 val lines = src.getLines.to[ArrayBuffer]
 src.close()
 
-// 正規表現でひらがなの駅名を抽出するする
+// 正規表現でひらがなの駅名部分を抽出
 val stationNames: ArrayBuffer[String] = lines.flatMap(line => ".+（(.+)えき・?.*）".r.findFirstMatchIn(line).map(m => m.group(1)))
   .map(katakana2hiragana)
   .distinct
   .sorted
 
 println(s"駅名数: ${stationNames.length}") // 7884
-
 
 var myAnswer = ""
 var alexaAnswer = ""
