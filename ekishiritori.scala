@@ -44,7 +44,7 @@ def zipWithScore(stationNames: Seq[String]): Seq[(String, Int)] =
     (name, score)
   }
 
-// Wikipediaの日本の鉄道駅一覧の各ページのリストをまるっとコピペしてきたファイル
+// Wikipediaの日本の鉄道駅一覧の各ページのリストを雑にコピペしてきたファイル
 // https://ja.wikipedia.org/wiki/日本の鉄道駅一覧
 val src = scala.io.Source.fromFile("wikipedia-ekimei-page-texts.txt")
 val lines = src.getLines.to[ArrayBuffer]
